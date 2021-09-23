@@ -5,6 +5,8 @@ import classes from './Form.module.scss'
 export const Form = () => {
   const [values, setvalues] = useState({
     planet: 'Earth',
+    objWeight: null,
+    mass: null,
   })
   const [error, seterror] = useState('')
   const planetGravity = {
@@ -29,9 +31,10 @@ export const Form = () => {
     if (!values.objWeight) {
       seterror('Mass is required')
     } else {
+      seterror('')
       const valuesCopy = { ...values }
       valuesCopy.mass = values.objWeight * planetGravity[values.planet]
-      console.log(valuesCopy)
+      setvalues(valuesCopy)
     }
   }
   return (
@@ -66,8 +69,12 @@ export const Form = () => {
         <button type='submit' className={classes.submitWeightBtn}>
           Calculate Weight
         </button>
-        {error.length > 0 ? <ErrorCard stringErr={error} /> : AnswerCard}
       </form>
+      {error.length > 0 ? (
+        <ErrorCard stringErr={error} />
+      ) : (
+        <AnswerCard values={values} />
+      )}
     </>
   )
 }
