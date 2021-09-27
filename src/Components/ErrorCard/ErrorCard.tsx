@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './ErrorCard.module.scss'
-export const ErrorCard = (props) => {
+import {Props} from './ErrorCardTypes'
+export const ErrorCard = (props: Props) => {
   return (
     <div className={classes.errorContainer}>
       <div className={classes.errorMsg}>{props.stringErr}</div>

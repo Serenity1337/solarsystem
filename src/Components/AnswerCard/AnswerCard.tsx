@@ -12,8 +12,31 @@ import {
   Uranus,
   Venus,
 } from '../../Utils/images'
-export const AnswerCard = (props) => {
-  const imgs = {
+interface IObjectKeys {
+  [key: string]: string
+}
+type Values = {
+  planet: string,
+  objWeight: number | null,
+  mass: number | null
+}
+type Props = {
+  values: Values
+}
+interface Imgs extends IObjectKeys {
+  Earth: string,
+  Jupiter: string,
+  Mars: string,
+  Mercury: string,
+  Moon: string,
+  Neptune: string,
+  Pluto: string,
+  Saturn: string,
+  Uranus: string,
+  Venus: string,
+}
+export const AnswerCard = (props: Props) => {
+  const imgs: IObjectKeys = {
     Earth,
     Jupiter,
     Mars,

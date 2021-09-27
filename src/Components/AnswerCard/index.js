@@ -1,2 +1,2 @@
-import { AnswerCard } from './AnswerCard'
+import { AnswerCard } from './AnswerCard.tsx'
 export default AnswerCard

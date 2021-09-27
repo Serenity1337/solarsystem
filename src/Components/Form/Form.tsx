@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import ErrorCard from '../ErrorCard'
 import AnswerCard from '../AnswerCard'
 import classes from './Form.module.scss'
+import {Values, PlanetGravity, Error, Input, Select} from './FormTypes'
 export const Form = () => {
-  const [values, setvalues] = useState({
+  const [values, setvalues] = useState<Values>({
     planet: 'Earth',
-    objWeight: null,
-    mass: null,
+    objWeight: 0,
+    mass: 0,
   })
-  const [error, seterror] = useState('')
-  const planetGravity = {
+  const selectSize: number = 1
+  const [error, seterror] = useState <Error>('')
+  const planetGravity: PlanetGravity = {
     Earth: 9.8,
     Jupiter: 24.79,
     Mars: 3.711,
@@ -21,19 +23,19 @@ export const Form = () => {
     Uranus: 8.69,
     Venus: 8.87,
   }
-  const inputHandler = (event) => {
+  const inputHandler = (event: Input | Select) => {
     const valuesCopy = { ...values }
-    valuesCopy[event.target.name] = event.target.value
+    valuesCopy[event.currentTarget.name] = event.currentTarget.value
     setvalues(valuesCopy)
   }
-  const submitAnswerHandler = (event) => {
+  const submitAnswerHandler = (event: React.FormEvent) => {
     event.preventDefault()
     if (!values.objWeight) {
       seterror('Mass is required')
     } else {
       seterror('')
       const valuesCopy = { ...values }
-      valuesCopy.mass = values.objWeight * planetGravity[values.planet]
+      valuesCopy.mass = Number(values.objWeight) * Number(planetGravity[values.planet])
       setvalues(valuesCopy)
     }
   }
@@ -52,7 +54,7 @@ export const Form = () => {
           onChange={inputHandler}
           id='planet'
           name='planet'
-          size='1'
+          size={selectSize}
           className={classes.planet}
         >
           <option value='Earth'>Earth</option>

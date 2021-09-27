@@ -5,7 +5,7 @@ import classes from './Home.module.scss'
 
 export const Home = () => {
   return (
-    <div>
+    <div className={classes.home}>
       {/* 
     1) heading 
     2) form
